@@ -16,6 +16,8 @@ type Pair struct {
 
 func main() {
 	f, _ := os.Open("days/05/input.txt")
+	defer f.Close()
+
 	scanner := bufio.NewScanner(f)
 	var a []Pair
 	ans := 0

@@ -26,6 +26,7 @@ func mul(nums []int) int {
 //
 // func main() {
 // 	f, _ := os.Open("days/06/input.txt")
+//  defer f.Close()
 // 	scanner := bufio.NewScanner(f)
 // 	n := 1000 // read from the input file
 // 	a := make([][]int, n)
@@ -55,6 +56,8 @@ func mul(nums []int) int {
 
 func main() {
 	f, _ := os.Open("days/06/input.txt")
+	defer f.Close()
+
 	scanner := bufio.NewScanner(f)
 	var board [][]byte
 
