@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"slices"
 	"sort"
 	"strconv"
 	"strings"
@@ -26,7 +25,7 @@ func main() {
 	// f, _ := os.Open("days/08/sample.txt")
 	// k := 10
 	f, _ := os.Open("days/08/input.txt")
-	k := 1000
+	// k := 1000
 	defer f.Close()
 
 	scanner := bufio.NewScanner(f)
@@ -80,17 +79,27 @@ func main() {
 		fa[fy] = fx
 	}
 
-	for i := range k {
-		d := ds[i]
+	for _, d := range ds {
 		union(d.i, d.j)
+		f := find(d.i)
+		if size[f] == n {
+			fmt.Println(q[d.i].x * q[d.j].x)
+			return
+		}
 	}
 
-	group := make([]int, n)
-	for x := range n {
-		f := find(x)
-		group[f] = size[f]
-	}
-	sort.Ints(group)
-	slices.Reverse(group)
-	fmt.Println(group[0] * group[1] * group[2])
+	// Part 1
+	// for i := range k {
+	// 	d := ds[i]
+	// 	union(d.i, d.j)
+	// }
+
+	// group := make([]int, n)
+	// for x := range n {
+	// 	f := find(x)
+	// 	group[f] = size[f]
+	// }
+	// sort.Ints(group)
+	// slices.Reverse(group)
+	// fmt.Println(group[0] * group[1] * group[2])
 }
