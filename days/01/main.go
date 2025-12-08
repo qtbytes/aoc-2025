@@ -19,16 +19,24 @@ func main() {
 		line := scanner.Text()
 		dir := line[0]
 		num, _ := strconv.Atoi(line[1:])
+		// for each 100 move, must reach 0 one times
+		if num >= 100 {
+			ans += num / 100
+			num %= 100
+		}
+		ori := pos
 		if dir == 'L' {
 			pos -= num
 		} else {
 			pos += num
 		}
-		pos = (pos + 100) % 100
-		if pos == 0 {
+		if 0 < pos && pos < 100 {
+			continue
+		}
+		if ori != 0 {
 			ans++
 		}
+		pos = (pos%100 + 100) % 100
 	}
 	fmt.Println(ans)
-
 }
